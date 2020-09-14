@@ -1,0 +1,11 @@
+############################
+# python requirements file for automation container
+############################
+ansible
+ansible-lint
+xmltodict
+pywinrm
+paramiko
+jmespath
+pytz
+pyvmomi

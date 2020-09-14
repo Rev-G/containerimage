@@ -1,0 +1,7 @@
+docker build -t pyweb .
+
+docker run -it pyweb  
+
+docker run --name webapp -p 8080:4000 pyweb
+
+docker run -p 8080:4000 pyweb

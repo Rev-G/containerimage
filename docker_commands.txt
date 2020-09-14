@@ -1,7 +1,0 @@
-docker build -t palmerpyweb .
-
-docker run -it palmerpyweb  
-
-docker run --name webapp -p 8080:4000 palmerpyweb
-
-docker run -p 8080:4000 palmerpyweb
