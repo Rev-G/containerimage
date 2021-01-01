@@ -4,7 +4,7 @@ LABEL maintainer="gpalmerjr@gmail.com"
 
 WORKDIR /var/tmp
 
-RUN dnf install python3-pip unzip sshpass -y && dnf clean all -y
+RUN dnf install python3-pip unzip sshpass openssh-clients -y && dnf clean all -y
 
 RUN curl -O -L 'https://releases.hashicorp.com/terraform/0.14.3/terraform_0.14.3_linux_amd64.zip' && \
   curl -O -L 'https://releases.hashicorp.com/packer/1.6.6/packer_1.6.6_linux_amd64.zip' && \
