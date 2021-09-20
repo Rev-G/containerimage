@@ -1,22 +1,25 @@
 FROM fedora:latest
 
+LABEL description="A container for automation development"
+LABEL software="Terraform,Packer,Ansible"
+
+ARG TERRAFORM="1.0.6"
+ARG PACKER="1.7.5"
+
 LABEL maintainer="gpalmerjr@gmail.com"
 
 WORKDIR /var/tmp
 
 COPY files/azure-cli.repo /etc/yum.repos.d/
+COPY requirements.txt /var/tmp/
 
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
   dnf install python3-pip unzip sshpass openssh-clients azure-cli -y && dnf clean all -y
 
-RUN curl -O -L 'https://releases.hashicorp.com/terraform/1.0.6/terraform_1.0.6_linux_amd64.zip' && \
-  curl -O -L 'https://releases.hashicorp.com/packer/1.7.5/packer_1.7.5_linux_amd64.zip' && \
+RUN curl -O -L "https://releases.hashicorp.com/terraform/${TERRAFORM}/terraform_${TERRAFORM}_linux_amd64.zip" && \
+  curl -O -L "https://releases.hashicorp.com/packer/${PACKER}/packer_${PACKER}_linux_amd64.zip" && \
   unzip -d /usr/local/bin terraform_1.0.6_linux_amd64.zip && \
   unzip -d /usr/local/bin packer_1.7.5_linux_amd64.zip && \
   rm -f *.zip
 
-RUN pip3 install --no-cache-dir \
-  ansible \
-  ansible-lint \
-  pywinrm \
-  jmespath
+RUN pip3 install -r /var/tmp/requirements.txt --no-cache-dir
