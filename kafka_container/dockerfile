@@ -1,0 +1,25 @@
+FROM openjdk:18-alpine
+
+ARG kafka_version=3.0.0
+ARG scala_version=2.13
+
+LABEL org.label-schema.name="kafka" \
+      org.label-schema.description="Apache Kafka" \
+      org.label-schema.build-date="today" \
+      org.label-schema.vcs-url="https://github.com/palmer" \
+      org.label-schema.vcs-ref="1.0.0" \
+      org.label-schema.version="${scala_version}_${kafka_version}" \
+      org.label-schema.schema-version="1.0" \
+      maintainer="palmer"
+
+ENV KAFKA_VERSION=$kafka_version \
+    SCALA_VERSION=$scala_version
+
+COPY download-kafka.sh versions.sh /tmp/
+
+RUN apk add --virtual=build --no-cache bash curl jq \
+    && chmod a+x /tmp/*.sh \
+    && mv /tmp/versions.sh /usr/bin \
+    && /tmp/download-kafka.sh \
+    && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
+    && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
