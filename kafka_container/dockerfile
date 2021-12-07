@@ -13,13 +13,25 @@ LABEL org.label-schema.name="kafka" \
       maintainer="palmer"
 
 ENV KAFKA_VERSION=$kafka_version \
-    SCALA_VERSION=$scala_version
+    SCALA_VERSION=$scala_version \
+    KAFKA_HOME=/opt/kafka
 
-COPY download-kafka.sh versions.sh /tmp/
+ENV PATH=${PATH}:${KAFKA_HOME}/bin
+
+COPY start-kafka.sh download-kafka.sh versions.sh /tmp/
 
 RUN apk add --virtual=build --no-cache bash curl jq \
     && chmod a+x /tmp/*.sh \
-    && mv /tmp/versions.sh /usr/bin \
+    && mv /tmp/start-kafka.sh /tmp/versions.sh /usr/bin \
     && /tmp/download-kafka.sh \
     && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
-    && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz
+    && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz \
+    && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} ${KAFKA_HOME} \
+    && rm -f -r /tmp/*
+
+COPY overrides /opt/overrides
+
+VOLUME ["/kafka"]
+
+# Use "exec" form so that it runs as PID 1 (useful for graceful shutdown)
+CMD ["start-kafka.sh"]
