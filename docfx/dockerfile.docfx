@@ -27,7 +27,7 @@ COPY . .
 RUN mono /tools/docfx/docfx.exe build docfx_project/docfx.json
 
 # deploy using nginx for static file hosting
-FROM nginx:latest
+FROM nginx:1
 
 WORKDIR /var/www/html
 
