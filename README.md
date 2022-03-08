@@ -33,6 +33,10 @@ note: if you create a bundle "-b" instead you must also include ".imgpkg/images.
 
 `imgpkg push -i docker.io/gpalmerjr/first-bundle-image:v1.0.0 -f palmer-bundle`
 
+with registry user and token passed in at runtime
+
+`./imgpkg push --registry-username '{{ user-here }}' --registry-password '{{ token-here }}' -i docker.io/gpalmerjr/image-package:v1.0.0 -f image-package`
+
 ### pull the image down
 
 `imgpkg pull -i docker.io/gpalmerjr/first-bundle-image:v1.0.0 -o first-image`
