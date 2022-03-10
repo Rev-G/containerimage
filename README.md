@@ -47,3 +47,10 @@ drwxr-xr-x  10 gary  staff   320B Feb 17 22:53 ..
 -rw-------   1 gary  staff    22B Dec 31  1969 hello.txt
 -rw-------@  1 gary  staff   114K Dec 31  1969 skate.jpeg
 ```
+
+## vsts agent (raspberry pi)
+
+Followed the install instructs on the [docker website](https://docs.docker.com/engine/install/ubuntu/)
+
+Then doing the docker steps on the [microsoft site](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops)
+**made some updates to the dockerfile for ubuntu 20.04**
