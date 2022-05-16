@@ -14,6 +14,6 @@
 
 ## Serve
 
-*Note: you need to naviagate to the _site folder that was built when running the docfx build*
+*Note: the _site folder from the the docfx build holds the rendered website*
 
 `docker run -it --rm -d -p 8080:80 --name web -v $PWD:/usr/share/nginx/html nginx`
