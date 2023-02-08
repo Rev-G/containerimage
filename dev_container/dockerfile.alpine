@@ -4,8 +4,8 @@ LABEL description="A container for automation development"
 LABEL software="Terraform,Packer,Ansible"
 LABEL maintainer="gpalmerjr@gmail.com"
 
-ARG TERRAFORM="1.0.6"
-ARG PACKER="1.7.5"
+ARG TERRAFORM="1.3.7"
+ARG PACKER="1.8.5"
 
 WORKDIR /var/tmp
 
@@ -18,7 +18,7 @@ RUN apk add --no-cache python3 py3-pip sshpass && \
     python3 -m pip --no-cache-dir install -r /var/tmp/requirements.txt && \
     curl -O -L "https://releases.hashicorp.com/terraform/${TERRAFORM}/terraform_${TERRAFORM}_linux_amd64.zip" && \
     curl -O -L "https://releases.hashicorp.com/packer/${PACKER}/packer_${PACKER}_linux_amd64.zip" && \
-    unzip -d /usr/local/bin terraform_1.0.6_linux_amd64.zip && \
-    unzip -d /usr/local/bin packer_1.7.5_linux_amd64.zip && \
+    unzip -d /usr/local/bin "terraform_${TERRAFORM}_linux_amd64.zip" && \
+    unzip -d /usr/local/bin "packer_${PACKER}_linux_amd64.zip" && \
     rm -f *.zip && \
     apk del --purge build
