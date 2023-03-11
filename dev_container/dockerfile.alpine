@@ -4,15 +4,15 @@ LABEL description="A container for automation development"
 LABEL software="Terraform,Packer,Ansible"
 LABEL maintainer="gpalmerjr@gmail.com"
 
-ARG TERRAFORM="1.3.7"
-ARG PACKER="1.8.5"
+ARG TERRAFORM="1.4.0"
+ARG PACKER="1.8.6"
 
 WORKDIR /var/tmp
 
 COPY requirements.txt /var/tmp/
 
-RUN apk add --no-cache python3 py3-pip sshpass && \
-    apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make unzip curl && \
+RUN apk add --no-cache sshpass unzip curl jq && \
+    apk add --virtual=build gcc libffi-dev musl-dev openssl-dev python3-dev make && \
     python3 -m pip --no-cache-dir install --upgrade pip setuptools wheel && \
     python3 -m pip --no-cache-dir install azure-cli && \
     python3 -m pip --no-cache-dir install -r /var/tmp/requirements.txt && \
