@@ -5,7 +5,7 @@ testing different ways of building container images
 
 docker build -f dockerfile.fedora -t gpalmerjr/autostation:latest .
 
-docker run --name auto-dev -rm -it gpalmerjr/autostation:latest
+docker run --name auto-dev --rm -it gpalmerjr/autostation:latest
 
 docker run --name auto-dev -d -v ~/mycode/netbox_ansible:/var/tmp/netbox_ansible -it gpalmerjr/automation-fedora:latest
 
