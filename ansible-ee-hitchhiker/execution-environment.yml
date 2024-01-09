@@ -1,0 +1,41 @@
+version: 3
+
+## this is what i call a hitch hiker because we are using the already created minimal ee as a jumping off point
+## here we do not need to worry about all the ansible stuff and just focus on additional things we need
+## so lots of the possible options in this build file have been omitted 
+
+#https://ansible.readthedocs.io/en/latest/index.html
+#https://ansible.readthedocs.io/projects/builder/en/latest/definition/
+#https://developers.redhat.com/articles/2023/05/08/how-create-execution-environments-using-ansible-builder#pushing_the_execution_environment_to_a_private_automation_hub
+
+images:
+  base_image:
+    #https://catalog.redhat.com/software/containers/search?build_categories_list=Automation%20execution%20environment&p=1&release_categories=Generally%20Available
+    name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:2.15.8-2
+    
+
+options:
+  package_manager_path: /usr/bin/microdnf
+
+dependencies:
+  galaxy: requirements.yml
+  python: requirements.txt
+  system: bindep.txt
+
+additional_build_files:
+    - src: files/tattoo.json
+      dest: configs
+
+additional_build_steps:
+  prepend_base:
+    - ADD --chown=root:root --chmod=644 https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo /etc/yum.repos.d/
+    - ADD --chown=root:root --chmod=755 _build/configs/tattoo.json /tmp/
+  prepend_final: |
+    RUN whoami
+    RUN cat /etc/os-release
+  append_final:
+    - RUN echo This is a post-install command!
+    - LABEL vendor="Rev-G"
+    - LABEL description="Ansible Hitchhiker Execution Environment using ee-minimal-rhel9"
+    - LABEL authors="https://github.com/Rev-G"
+

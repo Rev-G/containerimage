@@ -1,1 +1,20 @@
+### Generic ###
+*.log
+
+### VisualStudioCode ###
+.vscode/*
+
+### Ansible builder ###
+context
+
+### terraform ###
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfstate.*.backup
+*.lock.hcl
+*.tfvars
+backend.hcl
+
+### MACOS ###
 .DS_Store
