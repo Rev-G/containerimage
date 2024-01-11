@@ -1,0 +1,12 @@
+FROM fedora:latest
+
+LABEL description="A container for event driven ansible"
+LABEL software="EDA,Ansible"
+
+LABEL maintainer="gpalmerjr@gmail.com"
+
+WORKDIR /var/tmp
+
+ADD https://raw.githubusercontent.com/ansible/event-driven-ansible/main/requirements.txt /var/tmp/
+COPY files/requirements.txt /var/tmp/ansible_requirements.txt
+

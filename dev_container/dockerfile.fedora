@@ -11,7 +11,7 @@ LABEL maintainer="gpalmerjr@gmail.com"
 WORKDIR /var/tmp
 
 COPY files/azure-cli.repo /etc/yum.repos.d/
-COPY requirements.txt /var/tmp/
+COPY files/requirements.txt /var/tmp/
 
 RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
   dnf install python3-pip unzip sshpass openssh-clients azure-cli -y && dnf clean all -y
