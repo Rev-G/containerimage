@@ -12,6 +12,7 @@ RUN apt install -y --no-install-recommends \
     jq \
     git \
     libicu70 \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
