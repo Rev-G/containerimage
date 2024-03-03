@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/runtime:8.0-alpine
+
+ADD https://github.com/dotnet/docfx/releases/download/v2.75.3/docfx-linux-x64-v2.75.3.zip /tmp/
+
+RUN apk add --no-cache gcompat && \
+    apk add --virtual=build unzip && \
+    mkdir /opt/docfx && \
+    unzip /tmp/docfx-linux-x64-v2.75.3.zip -d /opt/docfx && \
+    rm -f *.zip && \
+    apk del --purge build
+
+WORKDIR /opt/docfx
+
+#ENTRYPOINT [ "docfx" ]
