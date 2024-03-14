@@ -1,3 +1,12 @@
 ---
 collections:
+  - name: awx.awx
+  - name: community.general
+  - name: community.windows
+  - name: ansible.windows
+  - name: ansible.posix
   - name: cloud.terraform
+  - name: https://github.com/vmware/ansible-for-nsxt.git
+    type: git
+  - name: https://github.com/cyberark/ansible-conjur-collection.git
+    type: git
