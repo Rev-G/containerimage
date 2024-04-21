@@ -11,8 +11,6 @@ version: 3
 images:
   base_image:
     #https://catalog.redhat.com/software/containers/search?build_categories_list=Automation%20execution%20environment&p=1&release_categories=Generally%20Available
-    #name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel9:1.0.0-573
-    #name: registry.redhat.io/ansible-automation-platform-23/ee-supported-rhel8:1.0.0-494
     name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:1.0.0-607
     
 options:
@@ -31,10 +29,6 @@ additional_build_steps:
   prepend_base:
     - ADD --chown=root:root --chmod=644 https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo /etc/yum.repos.d/
     - ADD --chown=root:root --chmod=755 _build/configs/tattoo.json /tmp/
-    - ADD --chown=root:root --chmod=755 https://github.com/cycloidio/terracognita/releases/download/v0.8.4/terracognita-linux-amd64.tar.gz /tmp/terracognita/
-    - RUN tar -xf /tmp/terracognita/terracognita-linux-amd64.tar.gz -C /tmp/terracognita/ ; mv /tmp/terracognita/terracognita-linux-amd64 /usr/local/bin/terracognita ; rm -fr /tmp/terracognita
-    - ADD --chown=root:root --chmod=755 https://github.com/minamijoyo/hcledit/releases/download/v0.2.10/hcledit_0.2.10_linux_amd64.tar.gz /tmp/hcledit/
-    - RUN tar -xf /tmp/hcledit/hcledit_0.2.10_linux_amd64.tar.gz -C /tmp/hcledit/ ; mv /tmp/hcledit/hcledit /usr/local/bin/hcledit ; rm -fr /tmp/hcledit
   prepend_final: |
     RUN whoami
     RUN cat /etc/os-release

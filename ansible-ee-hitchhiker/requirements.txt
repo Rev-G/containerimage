@@ -1,10 +1,1 @@
 jsonquery
-ldap3
-infoblox-client
-openshift
-pywinrm[credssp]
-pywinrm[kerberos]
-requests-kerberos
-pyvmomi>=8.0.2.0.1
-git+https://github.com/vmware/vsphere-automation-sdk-python.git@v8.0.2.0
-iputils
