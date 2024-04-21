@@ -11,9 +11,8 @@ version: 3
 images:
   base_image:
     #https://catalog.redhat.com/software/containers/search?build_categories_list=Automation%20execution%20environment&p=1&release_categories=Generally%20Available
-    name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:2.15.8-2
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:1.0.0-607
     
-
 options:
   package_manager_path: /usr/bin/microdnf
 
@@ -38,4 +37,3 @@ additional_build_steps:
     - LABEL vendor="Rev-G"
     - LABEL description="Ansible Hitchhiker Execution Environment using ee-minimal-rhel9"
     - LABEL authors="https://github.com/Rev-G"
-

@@ -1,1 +1,2 @@
 terraform [platform:rpm]
+sshpass [platform:rpm]
