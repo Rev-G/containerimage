@@ -1,10 +1,15 @@
-FROM mcr.microsoft.com/dotnet/runtime:8.0 as getbits
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim
 
-RUN apt update && \
-    apt install -y --no-install-recommends unzip
+# Add dotnet tools to path.
+ENV PATH="${PATH}:/root/.dotnet/tools"
 
-ADD https://github.com/dotnet/docfx/releases/download/v2.76.0/docfx-linux-x64-v2.76.0.zip /tmp/
+# Install DocFX as a dotnet tool.
+RUN dotnet tool update -g docfx && \
+    docfx --version
 
-## unzip stuff
+WORKDIR /opt/prj
+VOLUME [ "/opt/prj" ]
 
-## Create final image FROM
+ENTRYPOINT [ "docfx" ]
+
+## this is based of the official docfx container 
