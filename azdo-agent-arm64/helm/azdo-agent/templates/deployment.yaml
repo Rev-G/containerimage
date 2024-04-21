@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azdo-agent-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: azdo-agent
+  template:
+    metadata:
+      labels:
+        app: azdo-agent
+    spec:
+      containers:
+        - name: azdo-agent
+          image: "gpalmerjr/azp-agent:linux-arm64"
+          imagePullPolicy: IfNotPresent
+          args: ["--once"]
+          env:
+            - name: AZP_URL
+              value: {{ .Values.env.azurl }}
+            - name: AZP_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: azdevops
+                  key: AZP_TOKEN
+            - name: AZP_POOL
+              value: {{ .Values.env.azpool }}
+            - name: AZP_AGENT_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name

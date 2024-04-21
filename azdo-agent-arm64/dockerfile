@@ -1,0 +1,35 @@
+FROM ubuntu:22.04
+
+# To make it easier for build and release pipelines to run apt-get,
+# configure apt to not require confirmation (assume the -y argument by default)
+ENV DEBIAN_FRONTEND="noninteractive"
+RUN echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
+
+RUN apt update 
+RUN apt upgrade -y 
+RUN apt install -y --no-install-recommends \
+    curl \
+    jq \
+    git \
+    libicu70 \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash \
+#   && rm -rf /var/lib/apt/lists/*
+
+# Can be 'linux-x64', 'linux-arm64', 'linux-arm', 'rhel.6-x64'.
+ENV TARGETARCH="linux-arm64"
+
+WORKDIR /azp
+
+COPY ./start.sh .
+RUN chmod +x start.sh
+
+RUN useradd agent
+RUN chown agent ./
+USER agent
+# Another option is to run the agent as root.
+# ENV AGENT_ALLOW_RUNASROOT="true"
+
+ENTRYPOINT ["./start.sh"]

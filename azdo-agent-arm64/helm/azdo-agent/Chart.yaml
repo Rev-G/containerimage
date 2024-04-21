@@ -1,0 +1,11 @@
+apiVersion: v2
+name: azdo-agent
+description: A Helm chart for Kubernetes
+type: application
+#chart version
+version: 0.1.1
+# version of app being deployed
+appVersion: "1.16.0"
+maintainers:
+- email: willpalmer@gmail.com
+  name: WillyPalmer
