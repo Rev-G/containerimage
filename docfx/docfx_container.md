@@ -4,7 +4,17 @@
 
 ## Build
 
-`docker build -f dockerfile.docfx -t gpalmerjr/docfx:latest .`
+### This builds a nice massive container
+
+`docker build -f docfx_new.containerfile -t gpalmerjr/docfx:mytest .`
+
+### This one builds a more slim version but its x86 only
+
+`docker build -f docfx_fedora.containerfile -t gpalmerjr/docfx:fedora .`
+
+## Testing it
+
+`docker run --name docfx-dev --rm -it gpalmerjr/docfx:mytest docfx --version`
 
 ## Run
 
