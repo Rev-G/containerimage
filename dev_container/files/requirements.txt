@@ -5,3 +5,4 @@ ansible-rulebook
 pywinrm
 jmespath
 pytz
+requests>=2.32.0 # not directly required, pinned by Snyk to avoid a vulnerability
