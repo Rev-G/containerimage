@@ -1,12 +1,29 @@
 ---
 collections:
-  - name: awx.awx
   - name: community.general
   - name: community.windows
+  - name: community.azure
+  - name: community.crypto
+  - name: community.dns
+  - name: community.grafana
+  - name: community.hashi_vault
+  - name: community.libvirt
+  - name: community.mongodb
+  - name: community.network
+  - name: community.okd
+  - name: community.postgresql
+  - name: community.rabbitmq
+  - name: community.vmware
+  - name: awx.awx
+  - name: chocolatey.chocolatey
+  - name: containers.podman
   - name: ansible.windows
   - name: ansible.posix
   - name: cloud.terraform
   - name: azure.azcollection
+  - name: cyberark.pas
+  - name: grafana.grafana
+  - name: ovirt.ovirt
   - name: https://github.com/vmware/ansible-for-nsxt.git
     type: git
   - name: https://github.com/cyberark/ansible-conjur-collection.git
