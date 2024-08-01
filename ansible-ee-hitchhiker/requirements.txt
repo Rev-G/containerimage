@@ -1,1 +1,11 @@
 jsonquery
+packaging
+requests[security]
+xmltodict
+azure-storage-blob
+msgraph-sdk==1.0.0
+azure-cli-core==2.61.0
+azure-common==1.1.11
+azure-storage-blob==12.13.0
+azure-core==1.28.0
+azure-keyvault==4.2.0

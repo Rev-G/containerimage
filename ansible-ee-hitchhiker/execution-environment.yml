@@ -11,7 +11,7 @@ version: 3
 images:
   base_image:
     #https://catalog.redhat.com/software/containers/search?build_categories_list=Automation%20execution%20environment&p=1&release_categories=Generally%20Available
-    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:1.0.0-607
+    name: registry.redhat.io/ansible-automation-platform-24/ee-supported-rhel8:1.0.0-690
     
 options:
   package_manager_path: /usr/bin/microdnf
@@ -27,6 +27,7 @@ additional_build_files:
 
 additional_build_steps:
   prepend_base:
+    - RUN python3 -m pip install --upgrade pip
     - ADD --chown=root:root --chmod=644 https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo /etc/yum.repos.d/
     - ADD --chown=root:root --chmod=755 _build/configs/tattoo.json /tmp/
   prepend_final: |
