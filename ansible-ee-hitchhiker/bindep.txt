@@ -1,1 +1,20 @@
+#
+# base OS stuff
+#
+openssl [platform:rpm]
+#
+# for kerberos
+#
+krb5-devel [platform:rpm]
+krb5-libs [platform:rpm]
+krb5-workstation [platform:rpm]
+#
+# for terraform
+#
 terraform [platform:rpm]
+#
+# Compilation packages
+#
+gcc [compile:rpm]
+libxml2-devel [compile:rpm]
+python39-devel [compile:rpm]
