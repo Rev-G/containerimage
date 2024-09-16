@@ -1,0 +1,22 @@
+name: CookieCutter Build
+run-name: ${{ github.actor }} is building the CookieCutter image 🚀
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cookiecutter/**'
+
+env:
+  IMAGE_NAME: cookiecutter
+#
+jobs:
+  CookieCutter-Container-Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change to CookieCutter DIR
+        run: |
+          ls 
+          cd cookiecutter
+          ls 
