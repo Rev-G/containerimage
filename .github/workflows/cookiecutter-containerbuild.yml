@@ -28,8 +28,8 @@ jobs:
       
       - uses: anchore/sbom-action@v0
         with:
-          image: $IMAGE_NAME:latest
-          outputfile: "${{ github.workspace}}/sbom.json"
+          image: "${{ env.IMAGE_NAME }}:latest"
+          output-file: "${{ github.workspace}}/sbom.json"
 
       - name: List
         run: |
