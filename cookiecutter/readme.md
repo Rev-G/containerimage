@@ -11,3 +11,5 @@
 `docker run --name auto-dev --rm -it gpalmerjr/cookiecutter:latest cookiecutter --version`
 
 `docker run --name auto-dev --rm -it gpalmerjr/cookiecutter:latest`
+
+`syft localhost/gpalmerjr/cookiecutter -q -o syft-json | jq '.artifacts[] | select (.name == "cookiecutter").version'`
