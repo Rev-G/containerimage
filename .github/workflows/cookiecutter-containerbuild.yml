@@ -1,11 +1,12 @@
 name: CookieCutter Build
 run-name: ${{ github.actor }} is building the CookieCutter image 🚀
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'cookiecutter/**'
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'cookiecutter/**'
 
 env:
   IMAGE_NAME: cookiecutter
