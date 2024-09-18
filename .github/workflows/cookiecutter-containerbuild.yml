@@ -24,3 +24,14 @@ jobs:
       - name: List Images
         run: |
           podman image list
+      
+      - uses: anchore/sbom-action@v0
+        with:
+          image: $IMAGE_NAME:latest
+          outputfile: "${{ github.workspace}}/sbom.json"
+
+      - name: List
+        run: |
+          ls -la
+
+
