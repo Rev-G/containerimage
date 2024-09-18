@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Change to CookieCutter DIR
+
+      - name: Build image
         run: |
-          ls 
-          cd cookiecutter
-          ls 
+          cd $IMAGE_NAME
+          podman build . --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: List Images
+        run: |
+          podman image list
