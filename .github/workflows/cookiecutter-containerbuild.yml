@@ -35,7 +35,7 @@ jobs:
 
       - name: List
         run: |
-          podman run --rm -it "${{ env.IMAGE_NAME }}:latest" pip list --no-index --format=json > out.json
+          podman run --rm "${{ env.IMAGE_NAME }}:latest" pip list --no-index --format=json > out.json
 
       - name: Get cookiecutter version
         run: |
