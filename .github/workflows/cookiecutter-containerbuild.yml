@@ -35,4 +35,9 @@ jobs:
         run: |
           ls -la
 
+      - name: Get cookiecutter version
+        run: |
+          jq '.artifacts[] | select (.name == "cookiecutter").version' sbom.json
+
+
 
