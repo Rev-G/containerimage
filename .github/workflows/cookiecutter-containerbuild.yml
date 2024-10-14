@@ -31,6 +31,7 @@ jobs:
           image: "${{ env.IMAGE_NAME }}:latest"
           output-file: "${{ github.workspace}}/sbom.json"
           artifact-name: "sbom.json"
+          format: spdx-json
 
       - name: List
         run: |
