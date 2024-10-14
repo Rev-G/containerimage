@@ -34,6 +34,7 @@ jobs:
       - name: List
         run: |
           ls -la
+          cat sbom.json
 
       - name: Get cookiecutter version
         run: |
