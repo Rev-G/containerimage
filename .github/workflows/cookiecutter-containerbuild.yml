@@ -26,21 +26,20 @@ jobs:
         run: |
           podman image list
       
-      - uses: anchore/sbom-action@v0
-        with:
-          image: "${{ env.IMAGE_NAME }}:latest"
-          output-file: "${{ github.workspace}}/sbom.json"
-          artifact-name: "sbom.json"
-          format: spdx-json
+      # - uses: anchore/sbom-action@v0
+      #   with:
+      #     image: "${{ env.IMAGE_NAME }}:latest"
+      #     output-file: "${{ github.workspace}}/sbom.json"
+      #     artifact-name: "sbom.json"
+      #     format: spdx-json
 
       - name: List
         run: |
-          ls -la
-          cat sbom.json
+          podman run --rm -it "${{ env.IMAGE_NAME }}:latest" pip list --no-index --format=json > out.json
 
       - name: Get cookiecutter version
         run: |
-          jq '.artifacts[] | select (.name == "cookiecutter").version' sbom.json
+          jq -r '.[] | select(.name=="${{ env.IMAGE_NAME }}").version' out.json
 
 
 
