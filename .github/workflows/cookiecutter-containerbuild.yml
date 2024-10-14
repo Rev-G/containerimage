@@ -32,11 +32,11 @@ jobs:
 
       - name: Set cookiecutter version
         run: |
-          echo "COOKIECUTTER_VERSION=$(jq -r '.[] | select(.name==${{ env.IMAGE_NAME }}).version' out.json)" >> "$GITHUB_ENV"
+          echo "COOKIECUTTER_VERSION=$(jq -r '.[] | select(.name=="${{ env.IMAGE_NAME }}").version' out.json)" >> "$GITHUB_ENV"
 
       - name: Get cookiecutter version
         run: |
           echo $COOKIECUTTER_VERSION
-          
+
 
 
