@@ -29,6 +29,14 @@ drwxr-xr-x  10 gary  staff   320B Feb 17 22:53 ..
 
 ### create image and push to repository
 
+note: imgpkg also works with images created FROM scratch
+
+```
+FROM scratch
+
+COPY somefile.jpg /
+```
+
 note: if you create a bundle "-b" instead you must also include ".imgpkg/images.yml
 
 `imgpkg push -i docker.io/gpalmerjr/first-bundle-image:v1.0.0 -f palmer-bundle`
